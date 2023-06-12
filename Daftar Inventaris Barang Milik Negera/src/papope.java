@@ -3,7 +3,7 @@ public class papope {
         System.out.println("apeee");
         System.out.println("YAYOYEYEYEYE");
         for(int i=0; i<15;i++){
-            System.out.println("GAPLEK KING!");
+            System.out.println("Zanuar Haldi");
         }
     }
 }
