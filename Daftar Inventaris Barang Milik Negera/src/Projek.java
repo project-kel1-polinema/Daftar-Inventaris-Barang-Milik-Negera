@@ -42,6 +42,7 @@ public class Projek {
     }
 
     public void urutData(Projek[] array){
+        
         Arrays.sort(array, Comparator.nullsLast(Comparator.comparing(p -> p.kode, String.CASE_INSENSITIVE_ORDER)));
     }
 
