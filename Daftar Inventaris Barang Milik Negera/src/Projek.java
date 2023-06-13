@@ -141,9 +141,9 @@ public class Projek {
                 System.out.println("Menu yang anda pilih tidak tersedia");
                 break;
         }
-
         if(gagal == array.length){
             System.out.println("Data yang anda cari tidak ada");
         }
+        System.out.println();
     }
 }
