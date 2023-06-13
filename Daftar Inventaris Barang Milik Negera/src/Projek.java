@@ -28,9 +28,9 @@ public class Projek {
             System.out.print("Apakah anda ingin menghapus Data baris ke "+(i+1)+" (y/n): ");
             String jawab = sc.next();
             if(jawab.equalsIgnoreCase("y")){
-                array[i].kode = null;
+                array[i].kode = "dihapus";
                 array[i].tahun = 0;
-                array[i].nama = null;
+                array[i].nama = "dihapus";
                 array[i].nilai = 0;
                 jumHapus += 1;
             }
@@ -43,8 +43,7 @@ public class Projek {
     }
 
     public void urutData(Projek[] array, String kataKunci){
-        Arrays.sort(array, Comparator.comparing((Projek p) -> p.kode.equalsIgnoreCase(kataKunci))
-        .thenComparing(p -> p.kode, String.CASE_INSENSITIVE_ORDER));   
+        Arrays.sort(array, Comparator.comparing((Projek p) -> p.kode.equalsIgnoreCase(kataKunci)).thenComparing(p -> p.kode, String.CASE_INSENSITIVE_ORDER));   
     }
 
     public Projek[] tambahData(Projek[] array){
@@ -61,7 +60,7 @@ public class Projek {
 
     public void isiDariTambah(Projek[] array){
         for(int i=indeksTambah; i<array.length;i++){
-            System.out.println("Masukkan data dari array ke "+(i+1)+" : ");
+            System.out.println("Masukkan data dari array ke "+(i+1));
             System.out.print("Masukkan Kode Barang: ");
             sc.nextLine();
             String code = sc.nextLine().toUpperCase();
@@ -73,6 +72,7 @@ public class Projek {
             System.out.print("Masukkan Nilai Barang: ");  
             int value = sc.nextInt();
             array[i] = new Projek(code, year, name, value);
+            System.out.println();
         }
     }
 
@@ -144,6 +144,7 @@ public class Projek {
                 break;
         }
         if(gagal == array.length){
+            System.out.println();
             System.out.println("Data yang anda cari tidak ada");
         }
         System.out.println();
