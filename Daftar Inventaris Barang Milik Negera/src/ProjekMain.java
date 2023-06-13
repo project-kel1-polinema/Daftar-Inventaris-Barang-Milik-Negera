@@ -11,6 +11,7 @@ public class ProjekMain {
             System.out.print("1. Tampilkan Data BMN\n2. Cari Data BMN\n3. Tambah Data BMN\n4. Hapus Data BMN\n5. Urut Data BMN\n6. Exit\n");
             System.out.print("Pilih menu: ");
             menu = Projek.sc.nextInt();
+            System.out.println();
             switch(menu){
                 case 1:
                     pj[0].tampilData(pj);

@@ -19,6 +19,7 @@ public class Projek {
         for(int i=0; i<array.length; i++){
             System.out.println((i+1)+"\t"+array[i].kode+"\t"+array[i].tahun+"\t"+array[i].nama+"\t\t"+array[i].nilai);
         }
+        System.out.println();
     }
 
     public Projek[] hapusData(Projek[] array){
@@ -74,10 +75,12 @@ public class Projek {
     }
 
     public void cariData(Projek[] array){
+        System.out.println();
         System.out.println("=====MENU PENCARIAN=====");
         System.out.print("Cari Berdasarkan\n1. Kode Barang\n2. Tahun Barang\n3. Nama Barang\n4. Nilai\nPilih (1/2/3/4): ");
         int pilihan = sc.nextInt();
         int gagal = 0;
+        System.out.println();
         System.out.println("=======CARI DATA BARANG BMN=======");
         switch(pilihan){
             case 1:
