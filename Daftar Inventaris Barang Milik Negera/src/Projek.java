@@ -36,14 +36,15 @@ public class Projek {
             }
         }
         jmlHapus = jumHapus;
+        array[0].urutData(array, "Dihapus");
         Projek[] arrayBaruHapus = new Projek[array.length-jmlHapus];
         System.arraycopy(array, 0, arrayBaruHapus, 0, array.length-jmlHapus);
         return arrayBaruHapus;
     }
 
-    public void urutData(Projek[] array){
-        
-        Arrays.sort(array, Comparator.nullsLast(Comparator.comparing(p -> p.kode, String.CASE_INSENSITIVE_ORDER)));
+    public void urutData(Projek[] array, String kataKunci){
+        Arrays.sort(array, Comparator.comparing((Projek p) -> p.kode.equalsIgnoreCase(kataKunci))
+        .thenComparing(p -> p.kode, String.CASE_INSENSITIVE_ORDER));   
     }
 
     public Projek[] tambahData(Projek[] array){
