@@ -1,3 +1,5 @@
+package src;
+
 public class ProjekMain {
     public static void main(String[] args) {
         Projek[] pj = new Projek[4];

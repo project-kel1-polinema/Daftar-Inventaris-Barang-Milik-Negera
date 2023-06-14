@@ -1,3 +1,5 @@
+package src;
+
 import java.io.Console;
 import java.util.Arrays;
 
