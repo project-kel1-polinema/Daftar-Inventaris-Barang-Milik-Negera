@@ -7,13 +7,20 @@ public class ProjekMain {
         pj[1] = new Projek("PL-2304-01",2023, "Meja Kerja", 1000000); 
         pj[2] = new Projek("PL-2208-13",2023, "Printer Espon T11", 1500000);
         pj[3] = new Projek("PL-1901-25",2023, "AC 1.5 PK LG", 3000000);
+
+        pj[0].login();
+        if(pj[0].login(pj[0].username, pj[0].password)){
+            for(int i=0; i<1;){
+                break;
+            }
+        }
+
         int menu;
         do{
             System.out.println("==========MENU==========");
             System.out.print("1. Tampilkan Data BMN\n2. Cari Data BMN\n3. Tambah Data BMN\n4. Hapus Data BMN\n5. Urut Data BMN\n6. Exit\n");
             System.out.print("Pilih menu: ");
             menu = Projek.sc.nextInt();
-            System.out.println();
             switch(menu){
                 case 1:
                     pj[0].tampilData(pj);

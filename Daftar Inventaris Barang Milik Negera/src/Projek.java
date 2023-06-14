@@ -1,13 +1,18 @@
 package src;
+
+import java.io.Console;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
+
 
 public class Projek {
     static Scanner sc = new Scanner(System.in);
     public int nilai, tahun, angka, jmlHapus = 0, indeksTambah;
     public String nama, kode;
-
+    public char[] password;
+    String username;
+    
     public Projek(String kode,int tahun, String nama, int nilai){
         this.kode = kode;
         this.tahun = tahun;
@@ -15,12 +20,55 @@ public class Projek {
         this.nilai = nilai;
     }
 
+    public void login(){
+        do{
+            Console console = System.console();
+            if (console == null) {
+                System.err.println("Console tidak tersedia");
+                System.exit(1);
+            }
+
+            username = console.readLine("Masukkan username: ");
+            password = console.readPassword("Masukkan password: ");
+        
+            if (login(username, password)) {
+                System.out.println("Login berhasil");
+                System.out.println();
+                break;
+            } else {
+                System.out.println("Login gagal");
+            }
+        }while(!login(username, password));
+        
+    }
+
+    public String[] user = {"Agung", "Dona", "Aldi", "Rafli", "Naura", "Zaidan"};
+    public char[][] passwords = {
+        {'2', '2', '4', '1', '7', '6', '0', '1', '3', '5'},
+        {'2', '2', '4', '1', '7', '6', '0'},
+        {'2', '2', '4', '1', '7', '6', '0'},
+        {'2', '2', '4', '1', '7', '6', '0'},
+        {'2', '2', '4', '1', '7', '6', '0'},
+        {'2', '2', '4', '1', '7', '6', '0'}
+    };
+
+    public boolean login(String username, char[] password) {
+        for (int i = 0; i < user.length; i++) {
+            if (username.equals(user[i]) && Arrays.equals(password, passwords[i])) {
+                Arrays.fill(password, ' ');
+                return true;
+            }
+        }
+        Arrays.fill(password, ' ');
+        return false;
+    }
+    
+
     public void tampilData(Projek[] array){
         System.out.println("No\tKode BMN\tTahun Anggaran\tNama Barang\tNilai(Rp.)");
         for(int i=0; i<array.length; i++){
             System.out.println((i+1)+"\t"+array[i].kode+"\t"+array[i].tahun+"\t"+array[i].nama+"\t\t"+array[i].nilai);
         }
-        System.out.println();
     }
 
     public Projek[] hapusData(Projek[] array){
@@ -29,9 +77,9 @@ public class Projek {
             System.out.print("Apakah anda ingin menghapus Data baris ke "+(i+1)+" (y/n): ");
             String jawab = sc.next();
             if(jawab.equalsIgnoreCase("y")){
-                array[i].kode = "dihapus";
+                array[i].kode = "Dihapus";
                 array[i].tahun = 0;
-                array[i].nama = "dihapus";
+                array[i].nama = "Dihapus";
                 array[i].nilai = 0;
                 jumHapus += 1;
             }
@@ -61,7 +109,7 @@ public class Projek {
 
     public void isiDariTambah(Projek[] array){
         for(int i=indeksTambah; i<array.length;i++){
-            System.out.println("Masukkan data dari array ke "+(i+1));
+            System.out.println("Masukkan data dari array ke "+(i+1)+" : ");
             System.out.print("Masukkan Kode Barang: ");
             sc.nextLine();
             String code = sc.nextLine().toUpperCase();
@@ -73,17 +121,14 @@ public class Projek {
             System.out.print("Masukkan Nilai Barang: ");  
             int value = sc.nextInt();
             array[i] = new Projek(code, year, name, value);
-            System.out.println();
         }
     }
 
     public void cariData(Projek[] array){
-        System.out.println();
         System.out.println("=====MENU PENCARIAN=====");
         System.out.print("Cari Berdasarkan\n1. Kode Barang\n2. Tahun Barang\n3. Nama Barang\n4. Nilai\nPilih (1/2/3/4): ");
         int pilihan = sc.nextInt();
         int gagal = 0;
-        System.out.println();
         System.out.println("=======CARI DATA BARANG BMN=======");
         switch(pilihan){
             case 1:
@@ -144,10 +189,9 @@ public class Projek {
                 System.out.println("Menu yang anda pilih tidak tersedia");
                 break;
         }
+
         if(gagal == array.length){
-            System.out.println();
             System.out.println("Data yang anda cari tidak ada");
         }
-        System.out.println();
     }
 }
