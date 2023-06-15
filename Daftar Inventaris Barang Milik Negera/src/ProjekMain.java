@@ -1,5 +1,3 @@
-package src;
-
 public class ProjekMain {
     public static void main(String[] args) {
         Projek[] pj = new Projek[4];
@@ -18,7 +16,7 @@ public class ProjekMain {
         int menu;
         do{
             System.out.println("==========MENU==========");
-            System.out.print("1. Tampilkan Data BMN\n2. Cari Data BMN\n3. Tambah Data BMN\n4. Hapus Data BMN\n5. Urut Data BMN\n6. Exit\n");
+            System.out.print("1. Tampilkan Data BMN\n2. Cari Data BMN\n3. Tambah Data BMN\n4. Hapus Data BMN\n5. Urut Data BMN\n6.Tampilkan Statistik Data\n0. Exit\n");
             System.out.print("Pilih menu: ");
             menu = Projek.sc.nextInt();
             switch(menu){
@@ -44,6 +42,9 @@ public class ProjekMain {
                     break;
 
                 case 6:
+                
+
+                case 0:
                     return;
 
                 default:

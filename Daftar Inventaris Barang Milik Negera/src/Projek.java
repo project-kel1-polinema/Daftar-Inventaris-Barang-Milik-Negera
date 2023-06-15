@@ -1,5 +1,3 @@
-package src;
-
 import java.io.Console;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -7,12 +5,23 @@ import java.util.Scanner;
 
 
 public class Projek {
+    
     static Scanner sc = new Scanner(System.in);
     public int nilai, tahun, angka, jmlHapus = 0, indeksTambah;
     public String nama, kode;
     public char[] password;
     String username;
+    public String[] user = {"Agung", "Dona", "Aldi", "Rafli", "Naura", "Zaidan"};
+    public char[][] passwords = {
+        {'2', '2', '4', '1', '7', '6', '0', '1', '3', '5'},
+        {'2', '2', '4', '1', '7', '6', '0'},
+        {'2', '2', '4', '1', '7', '6', '0'},
+        {'2', '2', '4', '1', '7', '6', '0'},
+        {'2', '2', '4', '1', '7', '6', '0'},
+        {'2', '2', '4', '1', '7', '6', '0'}
+    };
     
+    // CONSTRUCTOR
     public Projek(String kode,int tahun, String nama, int nilai){
         this.kode = kode;
         this.tahun = tahun;
@@ -20,6 +29,7 @@ public class Projek {
         this.nilai = nilai;
     }
 
+    // LOGIN
     public void login(){
         do{
             Console console = System.console();
@@ -42,16 +52,7 @@ public class Projek {
         
     }
 
-    public String[] user = {"Agung", "Dona", "Aldi", "Rafli", "Naura", "Zaidan"};
-    public char[][] passwords = {
-        {'2', '2', '4', '1', '7', '6', '0', '1', '3', '5'},
-        {'2', '2', '4', '1', '7', '6', '0'},
-        {'2', '2', '4', '1', '7', '6', '0'},
-        {'2', '2', '4', '1', '7', '6', '0'},
-        {'2', '2', '4', '1', '7', '6', '0'},
-        {'2', '2', '4', '1', '7', '6', '0'}
-    };
-
+    //LOGIN
     public boolean login(String username, char[] password) {
         for (int i = 0; i < user.length; i++) {
             if (username.equals(user[i]) && Arrays.equals(password, passwords[i])) {
@@ -63,7 +64,7 @@ public class Projek {
         return false;
     }
     
-
+    // MENAMPILKAN DATA
     public void tampilData(Projek[] array){
         System.out.println("No\tKode BMN\tTahun Anggaran\tNama Barang\tNilai(Rp.)");
         for(int i=0; i<array.length; i++){
@@ -71,6 +72,7 @@ public class Projek {
         }
     }
 
+    // MENGHAPUS DATA   
     public Projek[] hapusData(Projek[] array){
         int jumHapus = 0;
         for(int i=0; i<array.length; i++){
@@ -91,10 +93,12 @@ public class Projek {
         return arrayBaruHapus;
     }
 
+    // MENGURUTKAN DATA
     public void urutData(Projek[] array, String kataKunci){
         Arrays.sort(array, Comparator.comparing((Projek p) -> p.kode.equalsIgnoreCase(kataKunci)).thenComparing(p -> p.kode, String.CASE_INSENSITIVE_ORDER));   
     }
 
+    // MENAMBAH DATA
     public Projek[] tambahData(Projek[] array){
         indeksTambah = array.length;
         System.out.print("Masukkan jumlah data yang ingin dimasukkan: ");
@@ -107,6 +111,7 @@ public class Projek {
         return arrayBaruTambah;
     }
 
+    // MENGISI DATA
     public void isiDariTambah(Projek[] array){
         for(int i=indeksTambah; i<array.length;i++){
             System.out.println("Masukkan data dari array ke "+(i+1)+" : ");
@@ -124,6 +129,7 @@ public class Projek {
         }
     }
 
+    // MENCARI DATA
     public void cariData(Projek[] array){
         System.out.println("=====MENU PENCARIAN=====");
         System.out.print("Cari Berdasarkan\n1. Kode Barang\n2. Tahun Barang\n3. Nama Barang\n4. Nilai\nPilih (1/2/3/4): ");
@@ -131,6 +137,7 @@ public class Projek {
         int gagal = 0;
         System.out.println("=======CARI DATA BARANG BMN=======");
         switch(pilihan){
+            // BERDASARKAN KODE BARANG
             case 1:
             System.out.print("Masukkan Kode Barang: ");
             sc.nextLine();
@@ -145,6 +152,7 @@ public class Projek {
             }
             break;
             
+            // BERDASARKAN TAHUN BARANG
             case 2:
             System.out.print("Masukkan Tahun Barang: ");
             int tahun = sc.nextInt();
@@ -158,6 +166,7 @@ public class Projek {
             }
             break;
             
+            // BERDASARKAN NAMA BARANG
             case 3:
             System.out.print("Masukkan Nama Barang: ");
             sc.nextLine();
@@ -172,6 +181,7 @@ public class Projek {
             }
             break;
 
+            // BERDASARKAN NILAI BARANG
             case 4:
             System.out.print("Masukkan Nilai Barang: ");
                 int nilai = sc.nextInt();
@@ -193,5 +203,44 @@ public class Projek {
         if(gagal == array.length){
             System.out.println("Data yang anda cari tidak ada");
         }
+    }
+
+    //Hitung Statistik SUM, AVG, MIN, MAX
+    // JUMLAH
+    public static int hitungSum(int[] nilai) {
+        int sum = 0;
+        for ( int num : nilai) {
+            sum += num;
+        }
+        return sum;
+    }
+
+    // Rata-Rata
+    public static double hitungAvg(int[] nilai) {
+        int sum = hitungSum(nilai);
+        double avg = ((double)(sum))/nilai.length;
+        return avg;
+    }
+
+    // NILAI MAKSIMAL
+    public static int hitungMax(int[] nilai) {
+        int max = nilai[0];
+        for (int i = 1; i < nilai.length; i++) {
+            if (nilai[i] > max) {
+                max = nilai[i];
+            }
+        }
+        return max;
+    }
+
+    // NILAI MINIMAL
+    public static int hitungMin(int[] nilai) {
+        int min = nilai[0];
+        for (int i = 0; i < nilai.length; i++) {
+            if (nilai[i] < min) {
+                min = nilai[i];
+            }
+        }
+        return min;
     }
 }
