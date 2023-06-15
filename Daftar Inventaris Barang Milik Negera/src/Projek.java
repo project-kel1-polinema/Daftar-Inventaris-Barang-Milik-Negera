@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Projek {
     
     static Scanner sc = new Scanner(System.in);
-    public int nilai, tahun, tempNilai, tempTahun, jmlHapus = 0, indeksTambah;
+    public int nilai, tahun, tempNilai, tempTahun, indeksTambah;
     public String nama, kode, tempNama, tempKode;
     public char[] password;
     String username;
@@ -85,10 +85,9 @@ public class Projek {
                 jumHapus += 1;
             }
         }
-        jmlHapus = jumHapus;
         array[0].urutDataDefault(array);
-        Projek[] arrayBaruHapus = new Projek[array.length-jmlHapus];
-        System.arraycopy(array, 0, arrayBaruHapus, 0, array.length-jmlHapus);
+        Projek[] arrayBaruHapus = new Projek[array.length-jumHapus];
+        System.arraycopy(array, 0, arrayBaruHapus, 0, array.length-jumHapus);
         return arrayBaruHapus;
     }
 
@@ -112,7 +111,7 @@ public class Projek {
             case 1:
                 for(int i=0; i<array.length-1; i++){
                     for(int j=0; j<array.length-1; j++){
-                        if(array[j].kode.compareTo(array[j+1].kode)>0){
+                        if(array[j].kode.compareToIgnoreCase(array[j+1].kode)>0){
                             operData(array, j);
                         }
                     }
@@ -132,7 +131,7 @@ public class Projek {
             case 3:
                 for(int i=0; i<array.length-1; i++){
                     for(int j=0; j<array.length-1; j++){
-                        if(array[j].nama.compareTo(array[j+1].nama)>0){
+                        if(array[j].nama.compareToIgnoreCase(array[j+1].nama)>0){
                             operData(array, j);
                         }
                     }

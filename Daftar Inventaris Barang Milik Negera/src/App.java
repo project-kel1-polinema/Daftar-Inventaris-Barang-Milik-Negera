@@ -1,6 +1,22 @@
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
+        String a = "a";
+        String A = "A";
+        String ab = "ab";
+        String b = "b";
+        String B = "B";
+        String ba = "ba";
+
+        System.out.println(a.compareTo(b));
+        System.out.println(ab.compareTo(b));
+        System.out.println(A.compareToIgnoreCase(b));
+        System.out.println(a.compareTo(ab));
+        System.out.println(ab.compareTo(a));
+        System.out.println(b.compareTo(a));
+        System.out.println(b.compareTo(A));
+        System.out.println(b.compareTo(ab));
+
     }
     
     /* public void urutData2(Projek[] array, String kataKunci){
