@@ -43,7 +43,7 @@ public class ProjekMain {
 
                 case 6:
                 
-
+                    break;
                 case 0:
                     return;
 
