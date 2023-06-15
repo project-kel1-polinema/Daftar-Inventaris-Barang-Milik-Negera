@@ -38,7 +38,7 @@ public class ProjekMain {
                     break;
 
                 case 5:
-                    pj[0].urutData(pj, "Dihapus");
+                    pj[0].urutData(pj);
                     break;
 
                 case 6:

@@ -1,14 +1,13 @@
 import java.io.Console;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Scanner;
 
 
 public class Projek {
     
     static Scanner sc = new Scanner(System.in);
-    public int nilai, tahun, angka, jmlHapus = 0, indeksTambah;
-    public String nama, kode;
+    public int nilai, tahun, tempNilai, tempTahun, jmlHapus = 0, indeksTambah;
+    public String nama, kode, tempNama, tempKode;
     public char[] password;
     String username;
     public String[] user = {"Agung", "Dona", "Aldi", "Rafli", "Naura", "Zaidan"};
@@ -87,15 +86,94 @@ public class Projek {
             }
         }
         jmlHapus = jumHapus;
-        array[0].urutData(array, "Dihapus");
+        array[0].urutDataDefault(array);
         Projek[] arrayBaruHapus = new Projek[array.length-jmlHapus];
         System.arraycopy(array, 0, arrayBaruHapus, 0, array.length-jmlHapus);
         return arrayBaruHapus;
     }
 
-    // MENGURUTKAN DATA
-    public void urutData(Projek[] array, String kataKunci){
-        Arrays.sort(array, Comparator.comparing((Projek p) -> p.kode.equalsIgnoreCase(kataKunci)).thenComparing(p -> p.kode, String.CASE_INSENSITIVE_ORDER));   
+    // MENGURUTKAN DATA TAPI YANG DEFAULTNYA, INI BUAT METHOD HAPUS AJA SUPAYA NDAK ERROR
+    public void urutDataDefault(Projek[] array){
+        for(int i=0; i<array.length-1; i++){
+            for(int j=0; j<array.length-1; j++){
+                if(array[j].kode.compareTo(array[j+1].kode)>0){
+                    operData(array, j);
+                }
+            }
+        }
+    }
+
+    // MENGURUTKAN DATA BERDASARKAN PILIHAN
+    public Projek[] urutData(Projek[] array){
+        System.out.println("=====MENU MENGURUTKAN=====");
+        System.out.print("Urut Berdasarkan\n1. Kode Barang\n2. Tahun Barang\n3. Nama Barang\n4. Nilai\nPilih (1/2/3/4): ");
+        int pilihan = sc.nextInt();
+        switch(pilihan){
+            case 1:
+                for(int i=0; i<array.length-1; i++){
+                    for(int j=0; j<array.length-1; j++){
+                        if(array[j].kode.compareTo(array[j+1].kode)>0){
+                            operData(array, j);
+                        }
+                    }
+                }
+                break;
+
+            case 2:
+                for(int i=0; i<array.length-1; i++){
+                    for(int j=0; j<array.length-1; j++){
+                        if(array[j].tahun > array[j+1].tahun || array[j+1].tahun <= 0){
+                            operData(array, j);
+                        }
+                    }
+                }
+                break;
+
+            case 3:
+                for(int i=0; i<array.length-1; i++){
+                    for(int j=0; j<array.length-1; j++){
+                        if(array[j].nama.compareTo(array[j+1].nama)>0){
+                            operData(array, j);
+                        }
+                    }
+                }
+                break;
+
+            case 4:
+                for(int i=0; i<array.length; i++){
+                    for(int j=0; j<array.length-1; j++){
+                        if(array[j].nilai > array[j+1].nilai || array[j+1].nilai <= 0){
+                            operData(array, j);
+                        }
+                    }
+                }
+                break;
+
+            default:
+                System.out.println("Menu yang anda pilih tidak tersedia");
+                break;
+
+        }
+        return array;
+    }
+
+    // BUAT PINDAH DATANYA
+    public void operData(Projek[] array, int j){
+        tempKode = array[j].kode;
+        array[j].kode = array[j+1].kode;
+        array[j+1].kode = tempKode;
+                    
+        tempNama = array[j].nama;
+        array[j].nama = array[j+1].nama;
+        array[j+1].nama = tempNama;
+
+        tempTahun = array[j].tahun;
+        array[j].tahun = array[j+1].tahun;
+        array[j+1].tahun = tempTahun;
+                    
+        tempNilai = array[j].nilai;
+        array[j].nilai = array[j+1].nilai;
+        array[j+1].nilai = tempNilai;
     }
 
     // MENAMBAH DATA
