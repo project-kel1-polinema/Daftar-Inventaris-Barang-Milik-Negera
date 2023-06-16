@@ -81,10 +81,10 @@ public class Projek {
             System.out.print("Apakah anda ingin menghapus Data baris ke "+(i+1)+" (y/n): ");
             String jawab = sc.next();
             if(jawab.equalsIgnoreCase("y")){
-                array[i].kode = "Dihapus";
-                array[i].tahun = 0;
-                array[i].nama = "Dihapus";
-                array[i].nilai = 0;
+                array[i].kode = "zzzzzzzzzzzzzzzzzzzzz";
+                array[i].tahun = -1;
+                array[i].nama = "zzzzzzzzzzzzzzzzzzzzzz";
+                array[i].nilai = -1;
                 jumHapus += 1;
             }
         }
@@ -112,7 +112,7 @@ public class Projek {
         int pilihan = sc.nextInt();
         switch(pilihan){
             case 1:
-                for(int i=0; i<array.length-1; i++){
+                for(int i=0; i<array.length; i++){
                     for(int j=0; j<array.length-1; j++){
                         if(array[j].kode.compareToIgnoreCase(array[j+1].kode)>0){
                             operData(array, j);
@@ -122,7 +122,7 @@ public class Projek {
                 break;
 
             case 2:
-                for(int i=0; i<array.length-1; i++){
+                for(int i=0; i<array.length; i++){
                     for(int j=0; j<array.length-1; j++){
                         if(array[j].tahun > array[j+1].tahun || array[j+1].tahun <= 0){
                             operData(array, j);
@@ -132,7 +132,7 @@ public class Projek {
                 break;
 
             case 3:
-                for(int i=0; i<array.length-1; i++){
+                for(int i=0; i<array.length; i++){
                     for(int j=0; j<array.length-1; j++){
                         if(array[j].nama.compareToIgnoreCase(array[j+1].nama)>0){
                             operData(array, j);
