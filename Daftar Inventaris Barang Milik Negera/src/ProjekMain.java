@@ -16,7 +16,7 @@ public class ProjekMain {
         int menu;
         do{
             System.out.println("==========MENU==========");
-            System.out.print("1. Tampilkan Data BMN\n2. Cari Data BMN\n3. Tambah Data BMN\n4. Hapus Data BMN\n5. Urut Data BMN\n6. Tampilkan Statistik Data\n0. Exit\n");
+            System.out.print("1. Tampilkan Data BMN\n2. Cari Data BMN\n3. Tambah Data BMN\n4. Hapus Data BMN\n5. Urut Data BMN\n0. Exit\n");
             System.out.print("Pilih menu: ");
             menu = Projek.sc.nextInt();
             switch(menu){
@@ -39,9 +39,6 @@ public class ProjekMain {
 
                 case 5:
                     pj[0].urutData(pj);
-                    break;
-
-                case 6:
                     break;
 
                 case 0:
