@@ -3,7 +3,7 @@ public class ProjekMain {
         Projek[] pj = new Projek[4];
         pj[0] = new Projek("PL-2304-02",2023, "Meja Kerja", 1000000); 
         pj[1] = new Projek("PL-2304-01",2023, "Meja Kerja", 1000000); 
-        pj[2] = new Projek("PL-2208-13",2023, "Printer Espon T11", 1500000);
+        pj[2] = new Projek("PL-2208-13",2023, "Printer Espon", 1500000);
         pj[3] = new Projek("PL-1901-25",2023, "AC 1.5 PK LG", 3000000);
 
         pj[0].login();
