@@ -318,7 +318,6 @@ public class Projek {
     }
 
     //Hitung Statistik SUM, AVG, MIN, MAX
-    // JUMLAH
     public void hitungStatistik(Projek[] array) {
         
         int sum = 0;
