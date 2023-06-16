@@ -67,11 +67,19 @@ public class Projek {
     }
     
     // MENAMPILKAN DATA
-    public void tampilData(Projek[] array){
-        System.out.println("No\tKode BMN\tTahun Anggaran\tNama Barang\tNilai(Rp.)");
-        for(int i=0; i<array.length; i++){
-            System.out.println((i+1)+"\t"+array[i].kode+"\t"+array[i].tahun+"\t"+array[i].nama+"\t\t"+array[i].nilai);
+    public void tampilData(Projek[] array) {
+        System.out.println(
+                "+-----------------------------------------------------------------------------------------------+");
+        System.out.println("| No | Kode BMN\t\t| Tahun Anggaran\t| Nama Barang\t\t\t| Nilai(Rp.)\t|");
+        System.out.println(
+                "+-----------------------------------------------------------------------------------------------+");
+        for (int i = 0; i < array.length; i++) {
+            System.out.println("|  " + (i + 1) + " | " + array[i].kode + "\t| " + array[i].tahun + "\t\t\t| "
+                    + array[i].nama + "       \t\t| " + array[i].nilai + "\t|");
         }
+        System.out.println(
+                "+-----------------------------------------------------------------------------------------------+");
+        System.out.println();
     }
 
     // MENGHAPUS DATA   
