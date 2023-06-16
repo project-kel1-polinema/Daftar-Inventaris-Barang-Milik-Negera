@@ -17,7 +17,14 @@ public class ProjekMain {
         String fileName = "DataBMN.txt";
         do{
             System.out.println("==========MENU==========");
-            System.out.print("1. Tampilkan Data BMN\n2. Cari Data BMN\n3. Tambah Data BMN\n4. Hapus Data BMN\n5. Urut Data BMN\n6. Cetak Data\n0. Exit\n");
+            System.out.println("1. Tampilkan Data BMN");
+            System.out.println("2. Cari Data BMN");
+            System.out.println("3. Tambah Data BMN");
+            System.out.println("4. Hapus Data BMN");
+            System.out.println("5. Urut Data BMN");
+            System.out.println("6. Cetak Data BMN");
+            System.out.println("7. Statistik Data BMN");
+            System.out.println("0. Exit");
             System.out.print("Pilih menu: ");
             menu = Projek.sc.nextInt();
             switch(menu){
@@ -45,6 +52,10 @@ public class ProjekMain {
                 case 6:
                     pj[0].writeArrayToFile(pj, fileName);
                     System.out.println("Array berhasil dicetak ke file.");
+                    break;
+
+                case 7:
+                    pj[0].hitungStatistik(pj);
                     break;
 
                 case 0:

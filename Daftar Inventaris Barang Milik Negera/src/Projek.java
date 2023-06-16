@@ -319,40 +319,26 @@ public class Projek {
 
     //Hitung Statistik SUM, AVG, MIN, MAX
     // JUMLAH
-    public static int hitungSum(int[] nilai) {
+    public void hitungStatistik(Projek[] array) {
+        
         int sum = 0;
-        for ( int num : nilai) {
-            sum += num;
-        }
-        return sum;
-    }
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
 
-    // Rata-Rata
-    public static double hitungAvg(int[] nilai) {
-        int sum = hitungSum(nilai);
-        double avg = ((double)(sum))/nilai.length;
-        return avg;
-    }
-
-    // NILAI MAKSIMAL
-    public static int hitungMax(int[] nilai) {
-        int max = nilai[0];
-        for (int i = 1; i < nilai.length; i++) {
-            if (nilai[i] > max) {
-                max = nilai[i];
-            }
+        for (int i = 0; i < array.length; i++) {
+            sum += array[i].nilai;
+            max = Math.max(max, array[i].nilai);
+            min = Math.min(min, array[i].nilai);
         }
-        return max;
-    }
 
-    // NILAI MINIMAL
-    public static int hitungMin(int[] nilai) {
-        int min = nilai[0];
-        for (int i = 0; i < nilai.length; i++) {
-            if (nilai[i] < min) {
-                min = nilai[i];
-            }
-        }
-        return min;
+        double avg = (double) sum / array.length;
+
+        System.out.println("========= STATISTIK =========");
+        System.out.println("| Jumlah Data : " + array.length +" |");
+        System.out.println("| Total Nilai (Rp.) : " + sum + " |");
+        System.out.println("| Rata-Rata Nilai (Rp.) : " + avg + " |");
+        System.out.println("| Nilai Maksimum : " + max + " |");
+        System.out.println("| Nilai Minimum : " + min + " |");
+        System.out.println("======================================");
     }
 }
