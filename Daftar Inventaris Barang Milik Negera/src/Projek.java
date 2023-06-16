@@ -1,4 +1,7 @@
+import java.io.BufferedWriter;
 import java.io.Console;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -279,6 +282,30 @@ public class Projek {
 
         if(gagal == array.length){
             System.out.println("Data yang anda cari tidak ada");
+        }
+    }
+
+    public static void writeArrayToFile(Projek[] pj, String fileName) {
+        String garis = "+====================================================================+\n";
+        String atas = "| Kode BMN    | Tahun Anggaran  | Nama Barang\t\t| Nilai(Rp.) |\n";
+        String penutup = "+--------------------------------------------------------------------+";
+        try {
+            FileWriter fileWriter = new FileWriter(fileName);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            bufferedWriter.write(garis);
+            bufferedWriter.write(atas);
+            bufferedWriter.write(garis);
+            for (int i = 0; i < pj.length; i++) {
+                    bufferedWriter.write("| "+pj[i].kode+"  | "+pj[i].tahun+"\t\t| "+pj[i].nama+"\t\t| "+pj[i].nilai+"    |"); //iki maksute yaopo  iku gae convert di
+                    bufferedWriter.write(" ");
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.write(penutup);
+
+            bufferedWriter.close();
+        } catch (IOException e) {
+            System.out.println("Terjadi kesalahan: " + e.getMessage());
         }
     }
 
