@@ -1,27 +1,14 @@
 import java.io.BufferedWriter;
-import java.io.Console;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Scanner;
 
 
 public class Projek {
     
-    static Scanner sc = new Scanner(System.in);
+    public Scanner sc = new Scanner(System.in);
     public int nilai, tahun, tempNilai, tempTahun, indeksTambah;
     public String nama, kode, tempNama, tempKode;
-    public char[] password;
-    String username;
-    public String[] user = {"Agung", "Dona", "Aldi", "Rafli", "Naura", "Zaidan"};
-    public char[][] passwords = {
-        {'2', '2', '4'},
-        {'2', '2', '4'},
-        {'2', '2', '4'},
-        {'2', '2', '4'},
-        {'2', '2', '4'},
-        {'2', '2', '4'}
-    };
     
     // CONSTRUCTOR
     public Projek(String kode,int tahun, String nama, int nilai){
@@ -30,46 +17,12 @@ public class Projek {
         this.nama = nama;
         this.nilai = nilai;
     }
-
-    // LOGIN
-    public void login(){
-        do{
-            Console console = System.console();
-            if (console == null) {
-                System.err.println("Console tidak tersedia");
-                System.exit(1);
-            }
-
-            username = console.readLine("Masukkan username: ");
-            password = console.readPassword("Masukkan password: ");
-        
-            if (login(username, password)) {
-                System.out.println("Login berhasil");
-                System.out.println();
-                break;
-            } else {
-                System.out.println("Login gagal");
-            }
-        }while(!login(username, password));
-        
-    }
-
-    //LOGIN
-    public boolean login(String username, char[] password) {
-        for (int i = 0; i < user.length; i++) {
-            if (username.equals(user[i]) && Arrays.equals(password, passwords[i])) {
-                Arrays.fill(password, ' ');
-                return true;
-            }
-        }
-        Arrays.fill(password, ' ');
-        return false;
-    }
     
     // MENAMPILKAN DATA
     public void tampilData(Projek[] array) {
-        System.out.println(
-                "+-----------------------------------------------------------------------------------------------+");
+        System.out.println("");
+        System.out.println("============================  Daftar Inventaris Barang Milik Negera  ============================");
+        System.out.println("+-----------------------------------------------------------------------------------------------+");
         System.out.println("| No | Kode BMN\t\t| Tahun Anggaran\t| Nama Barang\t\t\t| Nilai(Rp.)\t|");
         System.out.println(
                 "+-----------------------------------------------------------------------------------------------+");
@@ -84,6 +37,8 @@ public class Projek {
 
     // MENGHAPUS DATA   
     public Projek[] hapusData(Projek[] array){
+        System.out.println();
+        System.out.println("=========================================  Hapus Data  ===========================================");
         int jumHapus = 0;
         for(int i=0; i<array.length; i++){
             System.out.print("Apakah anda ingin menghapus Data baris ke "+(i+1)+" (y/n): ");
@@ -115,7 +70,8 @@ public class Projek {
 
     // MENGURUTKAN DATA BERDASARKAN PILIHAN
     public Projek[] urutData(Projek[] array){
-        System.out.println("=====MENU MENGURUTKAN=====");
+        System.out.println();
+        System.out.println("=========================================  Urut Data  ===========================================");
         System.out.print("Urut Berdasarkan\n1. Kode Barang\n2. Tahun Barang\n3. Nama Barang\n4. Nilai\nPilih (1/2/3/4): ");
         int pilihan = sc.nextInt();
         switch(pilihan){
@@ -164,6 +120,15 @@ public class Projek {
                 break;
 
         }
+        System.out.println("+-----------------------------------------------------------------------------------------------+");
+        System.out.println("| No | Kode BMN\t\t| Tahun Anggaran\t| Nama Barang\t\t\t| Nilai(Rp.)\t|");
+        System.out.println("+-----------------------------------------------------------------------------------------------+");
+        for (int i = 0; i < array.length; i++) {
+            System.out.println("|  " + (i + 1) + " | " + array[i].kode + "\t| " + array[i].tahun + "\t\t\t| "
+                    + array[i].nama + "       \t\t| " + array[i].nilai + "\t|");
+        }
+        System.out.println("+-----------------------------------------------------------------------------------------------+");
+    System.out.println();
         return array;
     }
 
@@ -189,69 +154,82 @@ public class Projek {
     // MENAMBAH DATA
     public Projek[] tambahData(Projek[] array){
         indeksTambah = array.length;
+        System.out.println();
+        System.out.println("=========================================  Tambah Data  ===========================================");
         System.out.print("Masukkan jumlah data yang ingin dimasukkan: ");
         int jumlahData = sc.nextInt();
         int tambahPanjang = array.length + jumlahData; 
         Projek[] arrayBaruTambah = new Projek[tambahPanjang];
         System.arraycopy(array, 0, arrayBaruTambah, 0, array.length);
         array = arrayBaruTambah;
-        System.out.println();
         return arrayBaruTambah;
     }
 
     // MENGISI DATA
     public void isiDariTambah(Projek[] array){
         for(int i=indeksTambah; i<array.length;i++){
-            System.out.println("Masukkan data dari array ke "+(i+1)+" : ");
-            System.out.print("Masukkan Kode Barang: ");
+            System.out.println("~Barang ke-"+(i+1));
+            System.out.print("Masukkan kode barang: ");
             sc.nextLine();
             String code = sc.nextLine().toUpperCase();
-            System.out.print("Masukkan Tahun Barang: ");
+            System.out.print("Masukkan tahun barang: ");
             int year = sc.nextInt();
-            System.out.print("Masukkan Nama Barang: ");
+            System.out.print("Masukkan nama barang: ");
             sc.nextLine();
             String name = sc.nextLine();
-            System.out.print("Masukkan Nilai Barang: ");  
+            System.out.print("Masukkan nilai barang: ");  
             int value = sc.nextInt();
             array[i] = new Projek(code, year, name, value);
+            System.out.println();
         }
+        System.out.println("Data berhasil ditambahkan.");
+        System.out.println();
     }
 
     // MENCARI DATA
     public void cariData(Projek[] array){
-        System.out.println("=====MENU PENCARIAN=====");
-        System.out.print("Cari Berdasarkan\n1. Kode Barang\n2. Tahun Barang\n3. Nama Barang\n4. Nilai\nPilih (1/2/3/4): ");
+        System.out.println("");
+        System.out.println("=========================================  Cari Data  ===========================================");
+        System.out.print("Cari Berdasarkan:\n1. Kode Barang\n2. Tahun Barang\n3. Nama Barang\n4. Nilai\nPilih (1/2/3/4): ");
         int pilihan = sc.nextInt();
         int gagal = 0;
-        System.out.println("=======CARI DATA BARANG BMN=======");
         switch(pilihan){
             // BERDASARKAN KODE BARANG
             case 1:
             System.out.print("Masukkan Kode Barang: ");
             sc.nextLine();
             String code = sc.nextLine();
-            System.out.println("No\tKode BMN\tTahun Anggaran\tNama Barang\tNilai(Rp.)");
+            System.out.println("+-----------------------------------------------------------------------------------------------+");
+            System.out.println("| No | Kode BMN\t\t| Tahun Anggaran\t| Nama Barang\t\t\t| Nilai(Rp.)\t|");
+            System.out.println("+-----------------------------------------------------------------------------------------------+");
             for(int i=0; i<array.length; i++){
                 if(code.equalsIgnoreCase(array[i].kode)){
-                    System.out.println((i+1)+"\t"+array[i].kode+"\t"+array[i].tahun+"\t"+array[i].nama+"\t\t"+array[i].nilai);
+                    System.out.println("|  " + (i+1) + " | " + array[i].kode + "\t| " + array[i].tahun + "\t\t\t| " + array[i].nama + "       \t\t| " + array[i].nilai + "\t|");
                 } else{
                     gagal += 1;
                 }
             }
+            System.out.println("+-----------------------------------------------------------------------------------------------+");
+            System.out.println();
             break;
             
             // BERDASARKAN TAHUN BARANG
             case 2:
             System.out.print("Masukkan Tahun Barang: ");
             int tahun = sc.nextInt();
-            System.out.println("No\tKode BMN\tTahun Anggaran\tNama Barang\tNilai(Rp.)");
+            System.out.println("+-----------------------------------------------------------------------------------------------+");
+            System.out.println("| No | Kode BMN\t\t| Tahun Anggaran\t| Nama Barang\t\t\t| Nilai(Rp.)\t|");
+            System.out.println("+-----------------------------------------------------------------------------------------------+");
             for(int i=0; i<array.length; i++){
                 if(tahun == array[i].tahun){
-                    System.out.println((i+1)+"\t"+array[i].kode+"\t"+array[i].tahun+"\t"+array[i].nama+"\t\t"+array[i].nilai);
+                    System.out.println("|  " + (i+1) + " | " + array[i].kode + "\t| " + array[i].tahun + "\t\t\t| " + array[i].nama + "       \t\t| " + array[i].nilai + "\t|");
                 } else{
                     gagal += 1;
                 }
             }
+            System.out.println("+-----------------------------------------------------------------------------------------------+");
+            System.out.println();
+
             break;
             
             // BERDASARKAN NAMA BARANG
@@ -285,6 +263,7 @@ public class Projek {
 
             default:
                 System.out.println("Menu yang anda pilih tidak tersedia");
+                System.out.println();
                 break;
         }
 
@@ -332,13 +311,14 @@ public class Projek {
         }
 
         double avg = (double) sum / array.length;
-
-        System.out.println("========= STATISTIK =========");
-        System.out.println("| Jumlah Data : " + array.length +" |");
-        System.out.println("| Total Nilai (Rp.) : " + sum + " |");
-        System.out.println("| Rata-Rata Nilai (Rp.) : " + avg + " |");
-        System.out.println("| Nilai Maksimum : " + max + " |");
-        System.out.println("| Nilai Minimum : " + min + " |");
-        System.out.println("======================================");
+        System.out.println();
+        System.out.println("===========  Statistik Data  ===========");
+        System.out.println("| Jumlah Data     : " + array.length +"\t\t\t|");
+        System.out.println("| Total Nilai     : " + sum + "          \t|");
+        System.out.println("| Rata-Rata Nilai : " + avg + "          \t|");
+        System.out.println("| Nilai Maksimum  : " + max + "          \t|");
+        System.out.println("| Nilai Minimum   : " + min + "          \t|");
+        System.out.println("========================================");
+        System.out.println();
     }
 }

@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class ProjekMain {
     public static void main(String[] args) {
         Projek[] pj = new Projek[4];
@@ -6,27 +8,55 @@ public class ProjekMain {
         pj[2] = new Projek("PL-2208-13",2023, "Printer Espon", 1500000);
         pj[3] = new Projek("PL-1901-25",2023, "AC 1.5 PK LG", 3000000);
 
-        pj[0].login();
-        if(pj[0].login(pj[0].username, pj[0].password)){
-            for(int i=0; i<1;){
-                break;
+        boolean login;
+        do{
+            String[] username = {"Agung", "Dona", "Aldi", "Rafli", "Naura", "Zaidan"};
+            char[][] passwords = {
+                {'2', '2', '4', '1'},
+                {'2', '2', '4', '1'},
+                {'2', '2', '4', '1'},
+                {'2', '2', '4', '1'},
+                {'2', '2', '4', '1'},
+                {'2', '2', '4', '1'}
+            };
+            
+            System.out.print("Masukkan username: ");
+            String inputUsername = pj[0].sc.nextLine();
+
+            System.out.print("Masukkan password: ");
+            String inputPassword = pj[0].sc.nextLine();
+    
+            login = false;
+            for (int i = 0; i < username.length; i++) {
+                if (inputUsername.equals(username[i]) && Arrays.equals(inputPassword.toCharArray(), passwords[i])) {
+                    login = true;
+                    break;
+                }
             }
-        }
+
+            if (login) {
+                System.out.println("Login berhasil");
+            } else {
+                System.out.println("Login gagal");
+            }
+        }while(!login);
 
         int menu;
         String fileName = "DataBMN.txt";
         do{
-            System.out.println("==========MENU==========");
-            System.out.println("1. Tampilkan Data BMN");
-            System.out.println("2. Cari Data BMN");
-            System.out.println("3. Tambah Data BMN");
-            System.out.println("4. Hapus Data BMN");
-            System.out.println("5. Urut Data BMN");
-            System.out.println("6. Cetak Data BMN");
-            System.out.println("7. Statistik Data BMN");
-            System.out.println("0. Exit");
+            System.out.println("===========MENU===========");
+            System.out.println("|| 1. Tampilkan Data    ||");
+            System.out.println("|| 2. Cari Data         ||");
+            System.out.println("|| 3. Tambah Data       ||");
+            System.out.println("|| 4. Hapus Data        ||");
+            System.out.println("|| 5. Urut Data         ||");
+            System.out.println("|| 6. Cetak Data        ||");
+            System.out.println("|| 7. Statistik Data    ||");
+            System.out.println("|| 0. Exit              ||");
+            System.out.println("==========================");
+
             System.out.print("Pilih menu: ");
-            menu = Projek.sc.nextInt();
+            menu = pj[0].sc.nextInt();
             switch(menu){
                 case 1:
                     pj[0].tampilData(pj);
