@@ -273,7 +273,7 @@ public class Projek {
     }
 
     // MEMBUAT FILE .txt BUAT EXPORT
-    public static void writeArrayToFile(Projek[] pj, String fileName) {
+    public void writeArrayToFile(Projek[] pj, String fileName) {
         String garis = "+====================================================================+\n";
         String atas = "| Kode BMN    | Tahun Anggaran  | Nama Barang\t\t| Nilai(Rp.) |\n";
         String penutup = "+--------------------------------------------------------------------+";
