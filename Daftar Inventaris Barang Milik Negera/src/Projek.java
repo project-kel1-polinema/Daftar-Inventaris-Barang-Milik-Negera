@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Projek {
     
+    // ATTRIBUTE
     public Scanner sc = new Scanner(System.in);
     public int nilai, tahun, tempNilai, tempTahun, indeksTambah;
     public String nama, kode, tempNama, tempKode;
