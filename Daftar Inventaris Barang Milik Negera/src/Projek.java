@@ -73,7 +73,7 @@ public class Projek {
     public Projek[] urutData(Projek[] array){
         System.out.println();
         System.out.println("=========================================  Urut Data  ===========================================");
-        System.out.print("Urut Berdasarkan\n1. Kode Barang\n2. Tahun Barang\n3. Nama Barang\n4. Nilai\nPilih (1/2/3/4): ");
+        System.out.print("Urut Berdasarkan\n1. Kode Barang\n2. Tahun Barang\n3. Nama Barang\n4. Nilai\n5. Kembali\nPilih (1/2/3/4/5): ");
         int pilihan = sc.nextInt();
         switch(pilihan){
             case 1:
@@ -115,6 +115,9 @@ public class Projek {
                     }
                 }
                 break;
+            
+            case 5:
+                break;
 
             default:
                 System.out.println("Menu yang anda pilih tidak tersedia");
@@ -129,7 +132,7 @@ public class Projek {
                     + array[i].nama + "       \t\t| " + array[i].nilai + "\t|");
         }
         System.out.println("+-----------------------------------------------------------------------------------------------+");
-    System.out.println();
+        System.out.println();
         return array;
     }
 
@@ -183,7 +186,9 @@ public class Projek {
             array[i] = new Projek(code, year, name, value);
             System.out.println();
         }
-        System.out.println("Data berhasil ditambahkan.");
+        if(array.length > indeksTambah){
+            System.out.println("Data berhasil ditambahkan.");
+        }
         System.out.println();
     }
 
@@ -191,66 +196,65 @@ public class Projek {
     public void cariData(Projek[] array){
         System.out.println("");
         System.out.println("=========================================  Cari Data  ===========================================");
-        System.out.print("Cari Berdasarkan:\n1. Kode Barang\n2. Tahun Barang\n3. Nama Barang\n4. Nilai\nPilih (1/2/3/4): ");
+        System.out.print("Cari Berdasarkan:\n1. Kode Barang\n2. Tahun Barang\n3. Nama Barang\n4. Nilai\n5. Kembali\nPilih (1/2/3/4/5): ");
         int pilihan = sc.nextInt();
         int gagal = 0;
         switch(pilihan){
             // BERDASARKAN KODE BARANG
             case 1:
-            System.out.print("Masukkan Kode Barang: ");
-            sc.nextLine();
-            String code = sc.nextLine();
-            System.out.println("+-----------------------------------------------------------------------------------------------+");
-            System.out.println("| No | Kode BMN\t\t| Tahun Anggaran\t| Nama Barang\t\t\t| Nilai(Rp.)\t|");
-            System.out.println("+-----------------------------------------------------------------------------------------------+");
-            for(int i=0; i<array.length; i++){
-                if(code.equalsIgnoreCase(array[i].kode)){
-                    System.out.println("|  " + (i+1) + " | " + array[i].kode + "\t| " + array[i].tahun + "\t\t\t| " + array[i].nama + "       \t\t| " + array[i].nilai + "\t|");
-                } else{
-                    gagal += 1;
+                System.out.print("Masukkan Kode Barang: ");
+                sc.nextLine();
+                String code = sc.nextLine();
+                System.out.println("+-----------------------------------------------------------------------------------------------+");
+                System.out.println("| No | Kode BMN\t\t| Tahun Anggaran\t| Nama Barang\t\t\t| Nilai(Rp.)\t|");
+                System.out.println("+-----------------------------------------------------------------------------------------------+");
+                for(int i=0; i<array.length; i++){
+                    if(code.equalsIgnoreCase(array[i].kode)){
+                        System.out.println("|  " + (i+1) + " | " + array[i].kode + "\t| " + array[i].tahun + "\t\t\t| " + array[i].nama + "       \t\t| " + array[i].nilai + "\t|");
+                    } else{
+                        gagal += 1;
+                    }
                 }
-            }
-            System.out.println("+-----------------------------------------------------------------------------------------------+");
-            System.out.println();
-            break;
+                System.out.println("+-----------------------------------------------------------------------------------------------+");
+                System.out.println();
+                break;
             
             // BERDASARKAN TAHUN BARANG
             case 2:
-            System.out.print("Masukkan Tahun Barang: ");
-            int tahun = sc.nextInt();
-            System.out.println("+-----------------------------------------------------------------------------------------------+");
-            System.out.println("| No | Kode BMN\t\t| Tahun Anggaran\t| Nama Barang\t\t\t| Nilai(Rp.)\t|");
-            System.out.println("+-----------------------------------------------------------------------------------------------+");
-            for(int i=0; i<array.length; i++){
-                if(tahun == array[i].tahun){
-                    System.out.println("|  " + (i+1) + " | " + array[i].kode + "\t| " + array[i].tahun + "\t\t\t| " + array[i].nama + "       \t\t| " + array[i].nilai + "\t|");
-                } else{
-                    gagal += 1;
+                System.out.print("Masukkan Tahun Barang: ");
+                int tahun = sc.nextInt();
+                System.out.println("+-----------------------------------------------------------------------------------------------+");
+                System.out.println("| No | Kode BMN\t\t| Tahun Anggaran\t| Nama Barang\t\t\t| Nilai(Rp.)\t|");
+                System.out.println("+-----------------------------------------------------------------------------------------------+");
+                for(int i=0; i<array.length; i++){
+                    if(tahun == array[i].tahun){
+                        System.out.println("|  " + (i+1) + " | " + array[i].kode + "\t| " + array[i].tahun + "\t\t\t| " + array[i].nama + "       \t\t| " + array[i].nilai + "\t|");
+                    } else{
+                        gagal += 1;
+                    }
                 }
-            }
-            System.out.println("+-----------------------------------------------------------------------------------------------+");
-            System.out.println();
-
-            break;
+                System.out.println("+-----------------------------------------------------------------------------------------------+");
+                System.out.println();
+                break;
             
             // BERDASARKAN NAMA BARANG
             case 3:
-            System.out.print("Masukkan Nama Barang: ");
-            sc.nextLine();
-            String nama = sc.nextLine();
-            System.out.println("No\tKode BMN\tTahun Anggaran\tNama Barang\tNilai(Rp.)");
-            for(int i=0; i<array.length; i++){
-                if(nama.equalsIgnoreCase(array[i].nama)){
-                    System.out.println((i+1)+"\t"+array[i].kode+"\t"+array[i].tahun+"\t"+array[i].nama+"\t\t"+array[i].nilai);
-                } else{
-                    gagal += 1;
+                System.out.print("Masukkan Nama Barang: ");
+                sc.nextLine();
+                String nama = sc.nextLine();
+                System.out.println("No\tKode BMN\tTahun Anggaran\tNama Barang\tNilai(Rp.)");
+                for(int i=0; i<array.length; i++){
+                    if(nama.equalsIgnoreCase(array[i].nama)){
+                        System.out.println((i+1)+"\t"+array[i].kode+"\t"+array[i].tahun+"\t"+array[i].nama+"\t\t"+array[i].nilai);
+                    } else{
+                        gagal += 1;
+                    }
                 }
-            }
-            break;
+                break;
 
             // BERDASARKAN NILAI BARANG
             case 4:
-            System.out.print("Masukkan Nilai Barang: ");
+                System.out.print("Masukkan Nilai Barang: ");
                 int nilai = sc.nextInt();
                 System.out.println("No\tKode BMN\tTahun Anggaran\tNama Barang\tNilai(Rp.)");
                 for(int i=0; i<array.length; i++){
@@ -260,6 +264,9 @@ public class Projek {
                         gagal += 1;
                     }
                 }
+                break;
+            
+            case 5:
                 break;
 
             default:

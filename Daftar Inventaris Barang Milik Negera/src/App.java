@@ -7,7 +7,11 @@ public class App {
         String b = "b";
         String B = "B";
         String ba = "ba";
+        String z = "z";
 
+        System.out.println("a".compareToIgnoreCase("s"));
+        System.out.println(a.compareTo(z));
+        System.out.println(z.compareTo(a));
         System.out.println(a.compareTo(b));
         System.out.println(ab.compareTo(b));
         System.out.println(A.compareToIgnoreCase(b));
