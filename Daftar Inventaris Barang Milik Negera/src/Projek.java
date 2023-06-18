@@ -117,7 +117,11 @@ public class Projek {
                 break;
             
             case 5:
-                break;
+                System.out.print("Apakah anda ingin keluar? (y/n): ");
+                String jawab = sc.next();
+                if(jawab.equalsIgnoreCase("y")){
+                    break;
+                }
 
             default:
                 System.out.println("Menu yang anda pilih tidak tersedia");
@@ -267,7 +271,11 @@ public class Projek {
                 break;
             
             case 5:
-                break;
+                System.out.print("Apakah anda ingin keluar? (y/n): ");
+                String jawab = sc.next();
+                if(jawab.equalsIgnoreCase("y")){
+                    break;
+                }
 
             default:
                 System.out.println("Menu yang anda pilih tidak tersedia");
