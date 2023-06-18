@@ -35,12 +35,15 @@ public class ProjekMain {
             }
 
             if (login) {
-                System.out.println("Login berhasil");
+                System.out.println("======= Login Berhasil =======\n");
+                System.out.println("== Selamat Datang, " + inputUsername + " ==");
+
             } else {
                 System.out.println("Login gagal");
             }
         }while(!login);
 
+    
         int menu;
         String fileName = "DataBMN.txt";
         do{
