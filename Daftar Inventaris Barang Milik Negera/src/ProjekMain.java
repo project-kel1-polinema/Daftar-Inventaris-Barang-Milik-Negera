@@ -8,20 +8,56 @@ public class ProjekMain {
         pj[2] = new Projek("PL-2208-13",2023, "Printer Espon", 1500000);
         pj[3] = new Projek("PL-1901-25",2023, "AC 1.5 PK LG", 3000000);
 
-        pj[0].login();
+        boolean login;
+        do{
+            String[] username = {"Agung", "Dona", "Aldi", "Rafli", "Naura", "Zaidan"};
+            char[][] passwords = {
+                {'2', '2', '4', '1'},
+                {'2', '2', '4', '1'},
+                {'2', '2', '4', '1'},
+                {'2', '2', '4', '1'},
+                {'2', '2', '4', '1'},
+                {'2', '2', '4', '1'}
+            };
+            
+            System.out.print("Masukkan username: ");
+            String inputUsername = pj[0].sc.nextLine();
+
+            System.out.print("Masukkan password: ");
+            String inputPassword = pj[0].sc.nextLine();
+    
+            login = false;
+            for (int i = 0; i < username.length; i++) {
+                if (inputUsername.equals(username[i]) && Arrays.equals(inputPassword.toCharArray(), passwords[i])) {
+                    login = true;
+                    break;
+                }
+            }
+
+            if (login) {
+                System.out.println("======= Login Berhasil =======\n");
+                System.out.println("== Selamat Datang, " + inputUsername + " ==");
+
+            } else {
+                System.out.println("Login gagal");
+            }
+        }while(!login);
+
     
         int menu;
         String fileName = "DataBMN.txt";
         do{
             System.out.println("===========MENU===========");
-            System.out.println("|| 1. Tampilkan Data    ||");
-            System.out.println("|| 2. Cari Data         ||");
-            System.out.println("|| 3. Tambah Data       ||");
-            System.out.println("|| 4. Hapus Data        ||");
-            System.out.println("|| 5. Urut Data         ||");
-            System.out.println("|| 6. Cetak Data        ||");
-            System.out.println("|| 7. Statistik Data    ||");
-            System.out.println("|| 0. Exit              ||");
+            System.out.println("|| 1. Tampilkan Data        ||");
+            System.out.println("|| 2. Cari Data             ||");
+            System.out.println("|| 3. Tambah Data           ||");
+            System.out.println("|| 4. Hapus Data            ||");
+            System.out.println("|| 5. Urut Data             ||");
+            System.out.println("|| 6. Cetak Data            ||");
+            System.out.println("|| 7. Statistik Data        ||");
+            System.out.println("|| 8. Riwayat Data Hapus    ||");
+            System.out.println("|| 9. Riwayat Data Tambah   ||");
+            System.out.println("|| 0. Exit                  ||");
             System.out.println("==========================");
 
             System.out.print("Pilih menu: ");
@@ -55,6 +91,16 @@ public class ProjekMain {
 
                 case 7:
                     pj[0].hitungStatistik(pj);
+                    break;
+                
+                case 8:
+                    pj[0].tampilRiwayatHapus();
+                    System.out.println("Riwayat berhasil dicetak ke file.");
+                    break;
+
+                case 9:
+                    pj[0].tampilRiwayatTambah();
+                    System.out.println("Riwayat berhasil dicetak ke file.");
                     break;
 
                 case 0:

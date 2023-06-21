@@ -1,7 +1,8 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -11,6 +12,9 @@ public class Projek {
     public Scanner sc = new Scanner(System.in);
     public int nilai, tahun, tempNilai, tempTahun, indeksTambah;
     public String nama, kode, tempNama, tempKode;
+     public List<Projek> riwayatHapus = new ArrayList<>();
+     public ArrayList<Projek> riwayat = new ArrayList<>();
+
     
     // CONSTRUCTOR
     public Projek(String kode,int tahun, String nama, int nilai){
@@ -20,42 +24,6 @@ public class Projek {
         this.nilai = nilai;
     }
     
-    public void login(){
-        boolean login;
-        do{
-            String[] username = {"Agung", "Dona", "Aldi", "Rafli", "Naura", "Zaidan"};
-            char[][] passwords = {
-                {'2', '2', '4', '1'},
-                {'2', '2', '4', '1'},
-                {'2', '2', '4', '1'},
-                {'2', '2', '4', '1'},
-                {'2', '2', '4', '1'},
-                {'2', '2', '4', '1'}
-            };
-            
-            System.out.print("Masukkan username: ");
-            String inputUsername = sc.nextLine();
-
-            System.out.print("Masukkan password: ");
-            String inputPassword = sc.nextLine();
-    
-            login = false;
-            for (int i = 0; i < username.length; i++) {
-                if (inputUsername.equals(username[i]) && Arrays.equals(inputPassword.toCharArray(), passwords[i])) {
-                    login = true;
-                    break;
-                }
-            }
-
-            if (login) {
-                System.out.println("======= Login Berhasil =======\n");
-                System.out.println("== Selamat Datang, " + inputUsername + " ==");
-
-            } else {
-                System.out.println("Login gagal");
-            }
-        }while(!login);
-    }
     // MENAMPILKAN DATA
     public void tampilData(Projek[] array) {
         System.out.println("");
@@ -74,14 +42,16 @@ public class Projek {
     }
 
     // MENGHAPUS DATA   
-    public Projek[] hapusData(Projek[] array){
+    public Projek[] hapusData(Projek[] array) {
         System.out.println();
         System.out.println("=========================================  Hapus Data  ===========================================");
         int jumHapus = 0;
-        for(int i=0; i<array.length; i++){
-            System.out.print("Apakah anda ingin menghapus Data baris ke "+(i+1)+" (y/n): ");
+        for (int i = 0; i < array.length; i++) {
+            System.out.print("Apakah anda ingin menghapus Data baris ke " + (i + 1) + " (y/n): ");
             String jawab = sc.next();
-            if(jawab.equalsIgnoreCase("y")){
+            if (jawab.equalsIgnoreCase("y")) {
+                Projek dataHapus = new Projek(array[i].kode, array[i].tahun, array[i].nama, array[i].nilai);
+                riwayatHapus.add(dataHapus); // Menyimpan data yang dihapus ke dalam riwayatHapus
                 array[i].kode = "zzzzzzzzzzzzzzzzzzzzz";
                 array[i].tahun = -1;
                 array[i].nama = "zzzzzzzzzzzzzzzzzzzzzz";
@@ -90,9 +60,62 @@ public class Projek {
             }
         }
         array[0].urutDataDefault(array);
-        Projek[] arrayBaruHapus = new Projek[array.length-jumHapus];
-        System.arraycopy(array, 0, arrayBaruHapus, 0, array.length-jumHapus);
+        Projek[] arrayBaruHapus = new Projek[array.length - jumHapus];
+        System.arraycopy(array, 0, arrayBaruHapus, 0, array.length - jumHapus);
         return arrayBaruHapus;
+    }
+
+    // Menampilkan riwayat perubahan data tambah
+     public void tampilRiwayatTambah() {
+    System.out.println("==== Riwayat Perubahan Data ====");
+    for (int i = 0; i < riwayat.size(); i++) {
+        Projek data = riwayat.get(i);
+        System.out.println("Perubahan ke-" + (i + 1));
+        System.out.println("Kode BMN: " + data.kode);
+        System.out.println("Tahun Anggaran: " + data.tahun);
+        System.out.println("Nama Barang: " + data.nama);
+        System.out.println("Nilai: " + data.nilai);
+        System.out.println();
+    }
+}
+
+    // MENAMPILKAN RIWAYAT HAPUS
+    public void tampilRiwayatHapus() {
+        System.out.println();
+        System.out.println("========================  Riwayat Data Yang Dihapus  ========================");
+        System.out.println("+---------------------------------------------------------------------------+");
+        System.out.println("| No | Kode BMN\t\t| Tahun Anggaran\t| Nama Barang\t\t\t| Nilai(Rp.)\t|");
+        System.out.println("+---------------------------------------------------------------------------+");
+        for (int i = 0; i < riwayatHapus.size(); i++) {
+            System.out.println("|  " + (i + 1) + " | " + riwayatHapus.get(i).kode + "\t| " + riwayatHapus.get(i).tahun + "\t\t\t| "
+                    + riwayatHapus.get(i).nama + "       \t\t| " + riwayatHapus.get(i).nilai + "\t|");
+        }
+        System.out.println("+---------------------------------------------------------------------------+");
+        System.out.println();
+    }
+
+    // MENYIMPAN RIWAYAT HAPUS KE FILE
+    public void simpanRiwayatHapusKeFile(String fileName) {
+        String garis = "+====================================================================+\n";
+        String atas = "| Kode BMN    | Tahun Anggaran   | Nama Barang                     | Nilai(Rp.) |\n";
+        String bawah = "+--------------------------------------------------------------------+\n";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            writer.write(garis);
+            writer.write(atas);
+            writer.write(bawah);
+            for (int i = 0; i < riwayatHapus.size(); i++) {
+                String data = String.format("| %-12s | %-16s | %-30s | %-10s |\n",
+                        riwayatHapus.get(i).kode, riwayatHapus.get(i).tahun, riwayatHapus.get(i).nama, riwayatHapus.get(i).nilai);
+                writer.write(data);
+            }
+            writer.write(bawah);
+            writer.write("\n");
+            System.out.println("Riwayat data yang dihapus berhasil disimpan ke file " + fileName);
+        } catch (IOException e) {
+            System.out.println("Terjadi kesalahan saat menyimpan riwayat data yang dihapus ke file " + fileName);
+            e.printStackTrace();
+        }
     }
 
     // MENGURUTKAN DATA TAPI YANG DEFAULTNYA, INI BUAT METHOD HAPUS AJA SUPAYA NDAK ERROR
@@ -221,6 +244,7 @@ public class Projek {
             System.out.print("Masukkan nilai barang: ");  
             int value = sc.nextInt();
             array[i] = new Projek(code, year, name, value);
+            riwayat.add(array[i]);
             System.out.println();
         }
         if(array.length > indeksTambah){
