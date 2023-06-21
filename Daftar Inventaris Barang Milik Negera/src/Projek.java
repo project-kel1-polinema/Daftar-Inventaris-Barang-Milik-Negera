@@ -1,6 +1,7 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -19,6 +20,42 @@ public class Projek {
         this.nilai = nilai;
     }
     
+    public void login(){
+        boolean login;
+        do{
+            String[] username = {"Agung", "Dona", "Aldi", "Rafli", "Naura", "Zaidan"};
+            char[][] passwords = {
+                {'2', '2', '4', '1'},
+                {'2', '2', '4', '1'},
+                {'2', '2', '4', '1'},
+                {'2', '2', '4', '1'},
+                {'2', '2', '4', '1'},
+                {'2', '2', '4', '1'}
+            };
+            
+            System.out.print("Masukkan username: ");
+            String inputUsername = sc.nextLine();
+
+            System.out.print("Masukkan password: ");
+            String inputPassword = sc.nextLine();
+    
+            login = false;
+            for (int i = 0; i < username.length; i++) {
+                if (inputUsername.equals(username[i]) && Arrays.equals(inputPassword.toCharArray(), passwords[i])) {
+                    login = true;
+                    break;
+                }
+            }
+
+            if (login) {
+                System.out.println("======= Login Berhasil =======\n");
+                System.out.println("== Selamat Datang, " + inputUsername + " ==");
+
+            } else {
+                System.out.println("Login gagal");
+            }
+        }while(!login);
+    }
     // MENAMPILKAN DATA
     public void tampilData(Projek[] array) {
         System.out.println("");

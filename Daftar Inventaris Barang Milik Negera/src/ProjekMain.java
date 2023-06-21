@@ -8,41 +8,7 @@ public class ProjekMain {
         pj[2] = new Projek("PL-2208-13",2023, "Printer Espon", 1500000);
         pj[3] = new Projek("PL-1901-25",2023, "AC 1.5 PK LG", 3000000);
 
-        boolean login;
-        do{
-            String[] username = {"Agung", "Dona", "Aldi", "Rafli", "Naura", "Zaidan"};
-            char[][] passwords = {
-                {'2', '2', '4', '1'},
-                {'2', '2', '4', '1'},
-                {'2', '2', '4', '1'},
-                {'2', '2', '4', '1'},
-                {'2', '2', '4', '1'},
-                {'2', '2', '4', '1'}
-            };
-            
-            System.out.print("Masukkan username: ");
-            String inputUsername = pj[0].sc.nextLine();
-
-            System.out.print("Masukkan password: ");
-            String inputPassword = pj[0].sc.nextLine();
-    
-            login = false;
-            for (int i = 0; i < username.length; i++) {
-                if (inputUsername.equals(username[i]) && Arrays.equals(inputPassword.toCharArray(), passwords[i])) {
-                    login = true;
-                    break;
-                }
-            }
-
-            if (login) {
-                System.out.println("======= Login Berhasil =======\n");
-                System.out.println("== Selamat Datang, " + inputUsername + " ==");
-
-            } else {
-                System.out.println("Login gagal");
-            }
-        }while(!login);
-
+        pj[0].login();
     
         int menu;
         String fileName = "DataBMN.txt";
