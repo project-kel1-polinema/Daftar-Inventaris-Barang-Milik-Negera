@@ -14,6 +14,7 @@ public class Projek {
     public String nama, kode, tempNama, tempKode;
      public List<Projek> riwayatHapus = new ArrayList<>();
      public ArrayList<Projek> riwayat = new ArrayList<>();
+     public List<Projek> riwayatTambah = new ArrayList<>();
 
     
     // CONSTRUCTOR
@@ -65,32 +66,19 @@ public class Projek {
         return arrayBaruHapus;
     }
 
-    // Menampilkan riwayat perubahan data tambah
-     public void tampilRiwayatTambah() {
-    System.out.println("==== Riwayat Perubahan Data ====");
-    for (int i = 0; i < riwayat.size(); i++) {
-        Projek data = riwayat.get(i);
-        System.out.println("Perubahan ke-" + (i + 1));
-        System.out.println("Kode BMN: " + data.kode);
-        System.out.println("Tahun Anggaran: " + data.tahun);
-        System.out.println("Nama Barang: " + data.nama);
-        System.out.println("Nilai: " + data.nilai);
-        System.out.println();
-    }
-}
-
+    
     // MENAMPILKAN RIWAYAT HAPUS
     public void tampilRiwayatHapus() {
         System.out.println();
-        System.out.println("========================  Riwayat Data Yang Dihapus  ========================");
-        System.out.println("+---------------------------------------------------------------------------+");
+        System.out.println("==================================  Riwayat Data Yang Dihapus  ==================================");
+        System.out.println("+-----------------------------------------------------------------------------------------------+");
         System.out.println("| No | Kode BMN\t\t| Tahun Anggaran\t| Nama Barang\t\t\t| Nilai(Rp.)\t|");
-        System.out.println("+---------------------------------------------------------------------------+");
+        System.out.println("+-----------------------------------------------------------------------------------------------+");
         for (int i = 0; i < riwayatHapus.size(); i++) {
             System.out.println("|  " + (i + 1) + " | " + riwayatHapus.get(i).kode + "\t| " + riwayatHapus.get(i).tahun + "\t\t\t| "
                     + riwayatHapus.get(i).nama + "       \t\t| " + riwayatHapus.get(i).nilai + "\t|");
         }
-        System.out.println("+---------------------------------------------------------------------------+");
+        System.out.println("+-----------------------------------------------------------------------------------------------+");
         System.out.println();
     }
 
@@ -215,7 +203,7 @@ public class Projek {
         array[j+1].nilai = tempNilai;
     }
 
-    // MENAMBAH DATA
+    /// MENAMBAH DATA
     public Projek[] tambahData(Projek[] array){
         indeksTambah = array.length;
         System.out.println();
@@ -230,27 +218,46 @@ public class Projek {
     }
 
     // MENGISI DATA
-    public void isiDariTambah(Projek[] array){
-        for(int i=indeksTambah; i<array.length;i++){
-            System.out.println("~Barang ke-"+(i+1));
-            System.out.print("Masukkan kode barang: ");
-            sc.nextLine();
-            String code = sc.nextLine().toUpperCase();
-            System.out.print("Masukkan tahun barang: ");
-            int year = sc.nextInt();
-            System.out.print("Masukkan nama barang: ");
-            sc.nextLine();
-            String name = sc.nextLine();
-            System.out.print("Masukkan nilai barang: ");  
-            int value = sc.nextInt();
-            array[i] = new Projek(code, year, name, value);
-            riwayat.add(array[i]);
+   public void isiDariTambah(Projek[] array) {
+    for (int i = indeksTambah; i < array.length; i++) {
+        System.out.println("~Barang ke-" + (i + 1));
+        System.out.print("Masukkan kode barang: ");
+        sc.nextLine();
+        String code = sc.nextLine().toUpperCase();
+        System.out.print("Masukkan tahun barang: ");
+        int year = sc.nextInt();
+        System.out.print("Masukkan nama barang: ");
+        sc.nextLine();
+        String name = sc.nextLine();
+        System.out.print("Masukkan nilai barang: ");
+        int value = sc.nextInt();
+        array[i] = new Projek(code, year, name, value);
+
+        // Membuat objek baru untuk menyimpan data ke dalam riwayatTambah
+        Projek riwayatDataTambah = new Projek(code, year, name, value);
+        riwayat.add(riwayatDataTambah);
+        riwayatTambah.add(riwayatDataTambah); // Menambahkan data yang baru ditambahkan ke dalam riwayatTambah
+        System.out.println();
+    }
+    if (array.length > indeksTambah) {
+        System.out.println("Data berhasil ditambahkan.");
+    }
+    System.out.println();
+}
+
+    // Menampilkan riwayat perubahan data tambah
+    public void tampilRiwayatTambah() {
+        System.out.println("==== Riwayat Perubahan Data ====");
+        for (int i = 0; i < riwayatTambah.size(); i++) {
+            Projek data = riwayatTambah.get(i);
+            System.out.println();
+            System.out.println("Penambahan data ke-" + (i + 1));
+            System.out.println("Kode BMN: " + data.kode);
+            System.out.println("Tahun Anggaran: " + data.tahun);
+            System.out.println("Nama Barang: " + data.nama);
+            System.out.println("Nilai: " + data.nilai);
             System.out.println();
         }
-        if(array.length > indeksTambah){
-            System.out.println("Data berhasil ditambahkan.");
-        }
-        System.out.println();
     }
 
     // MENCARI DATA
