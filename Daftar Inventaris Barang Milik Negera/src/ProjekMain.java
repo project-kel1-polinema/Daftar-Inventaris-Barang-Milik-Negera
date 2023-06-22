@@ -98,7 +98,7 @@ public class ProjekMain {
                     break;
 
                 case 9:
-                    pj[0].writeArrayToFile(pj, fileName);
+                    pj[0].cetakDataKeFile(pj, fileName);
                     System.out.println("Data berhasil dicetak menjadi file .txt");
                     System.out.println();
                     break;
