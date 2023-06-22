@@ -3,8 +3,8 @@ import java.util.Arrays;
 public class ProjekMain {
     public static void main(String[] args) {
         Projek[] pj = new Projek[4];
-        pj[0] = new Projek("PL-2304-02",2023, "Meja Kerja", 1000000); 
-        pj[1] = new Projek("PL-2304-01",2023, "Meja Kerja", 1000000); 
+        pj[0] = new Projek("PL-2304-02",2023, "Meja Kerja", 1000000);
+        pj[1] = new Projek("PL-2304-01",2023, "Meja Kerja", 1000000);
         pj[2] = new Projek("PL-2208-13",2023, "Printer Espon", 1500000);
         pj[3] = new Projek("PL-1901-25",2023, "AC 1.5 PK LG", 3000000);
 
@@ -35,11 +35,12 @@ public class ProjekMain {
             }
 
             if (login) {
-                System.out.println("======= Login Berhasil =======\n");
-                System.out.println("== Selamat Datang, " + inputUsername + " ==");
+                System.out.println("Login Berhasil\n");
+                System.out.println("~ Selamat Datang, " + inputUsername + ".");
 
             } else {
-                System.out.println("Login gagal");
+                System.out.println("Login Gagal");
+                System.out.println();
             }
         }while(!login);
 
@@ -47,18 +48,18 @@ public class ProjekMain {
         int menu;
         String fileName = "DataBMN.txt";
         do{
-            System.out.println("===========MENU===========");
+            System.out.println("=============MENU=============");
             System.out.println("|| 1. Tampilkan Data        ||");
             System.out.println("|| 2. Cari Data             ||");
             System.out.println("|| 3. Tambah Data           ||");
             System.out.println("|| 4. Hapus Data            ||");
             System.out.println("|| 5. Urut Data             ||");
-            System.out.println("|| 6. Cetak Data            ||");
-            System.out.println("|| 7. Statistik Data        ||");
+            System.out.println("|| 6. Statistik Data        ||");
+            System.out.println("|| 7. Riwayat Data Tambah   ||");
             System.out.println("|| 8. Riwayat Data Hapus    ||");
-            System.out.println("|| 9. Riwayat Data Tambah   ||");
+            System.out.println("|| 9. Cetak Data            ||");
             System.out.println("|| 0. Exit                  ||");
-            System.out.println("==========================");
+            System.out.println("==============================");
 
             System.out.print("Pilih menu: ");
             menu = pj[0].sc.nextInt();
@@ -85,22 +86,21 @@ public class ProjekMain {
                     break;
 
                 case 6:
-                    pj[0].writeArrayToFile(pj, fileName);
-                    System.out.println("Array berhasil dicetak ke file.");
+                    pj[0].hitungStatistik(pj);
                     break;
 
                 case 7:
-                    pj[0].hitungStatistik(pj);
+                    pj[0].tampilRiwayatTambah();
                     break;
                 
                 case 8:
                     pj[0].tampilRiwayatHapus();
-                    System.out.println("Riwayat berhasil dicetak ke file.");
                     break;
 
                 case 9:
-                    pj[0].tampilRiwayatTambah();
-                    System.out.println("Riwayat berhasil dicetak ke file.");
+                    pj[0].writeArrayToFile(pj, fileName);
+                    System.out.println("Data berhasil dicetak menjadi file .txt");
+                    System.out.println();
                     break;
 
                 case 0:
