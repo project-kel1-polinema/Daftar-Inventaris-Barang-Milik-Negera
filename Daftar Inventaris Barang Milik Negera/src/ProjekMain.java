@@ -55,8 +55,8 @@ public class ProjekMain {
             System.out.println("|| 4. Hapus Data            ||");
             System.out.println("|| 5. Urut Data             ||");
             System.out.println("|| 6. Statistik Data        ||");
-            System.out.println("|| 7. Riwayat Data Tambah   ||");
-            System.out.println("|| 8. Riwayat Data Hapus    ||");
+            System.out.println("|| 7. Riwayat Tambah Data   ||");
+            System.out.println("|| 8. Riwayat Hapus Data    ||");
             System.out.println("|| 9. Cetak Data            ||");
             System.out.println("|| 0. Exit                  ||");
             System.out.println("==============================");
