@@ -55,8 +55,8 @@ public class ProjekMain {
             System.out.println("|| 4. Hapus Data            ||");
             System.out.println("|| 5. Urut Data             ||");
             System.out.println("|| 6. Statistik Data        ||");
-            System.out.println("|| 7. Riwayat Data Tambah   ||");
-            System.out.println("|| 8. Riwayat Data Hapus    ||");
+            System.out.println("|| 7. Riwayat Tambah Data   ||");
+            System.out.println("|| 8. Riwayat Hapus Data    ||");
             System.out.println("|| 9. Cetak Data            ||");
             System.out.println("|| 0. Exit                  ||");
             System.out.println("==============================");
@@ -98,13 +98,13 @@ public class ProjekMain {
                     break;
 
                 case 9:
-                    pj[0].writeArrayToFile(pj, fileName);
+                    pj[0].cetakDataKeFile(pj, fileName);
                     System.out.println("Data berhasil dicetak menjadi file .txt");
                     System.out.println();
                     break;
 
                 case 0:
-                    return;
+                    break;
 
                 default:
                     System.out.println("Menu yang anda pilih tidak tersedia");
